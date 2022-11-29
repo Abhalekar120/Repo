@@ -1,16 +1,15 @@
 package com.master.api.controller;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -68,6 +67,19 @@ public class EmployeeController {
 //		this.service.getEmployeeByDate(Date);
 //		return new ResponseEntity<>(HttpStatus.OK);
 //	}
+	
+	@PatchMapping("/employee/{id}")
+	public ResponseEntity<Employee>patchEmployee(@PathVariable Long id, @RequestBody Employee emp){
+	Employee empl=this.service.patchEmployee(id);
+	 // Employee empl=this.service.saveEmp(emp);
+	empl.setFirstName(emp.getFirstName());
+	empl.setLastName(emp.getLastName());
+	//empl.setGender(emp.getGender());
+	Employee emp1=service.savePost(empl);
+	
+	return new ResponseEntity<Employee>(emp1,HttpStatus.OK);
+		
+	}
 	
 	@DeleteMapping("/employee/{id}")
 	public ResponseEntity<?>deleteEmployee(@PathVariable Long id) {

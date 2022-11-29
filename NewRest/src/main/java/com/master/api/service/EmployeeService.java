@@ -18,10 +18,12 @@ public interface EmployeeService {
 //
 //	void getEmployeeByDate(LocalDate date);
 
-	void savePost(Employee emp);
+	Employee savePost(Employee emp);
 
 	void deleteEmployee(Long id);
 
 	Employee getEmployeeDetails(Long id);
+	
+	Employee patchEmployee(Long id);
 
 }
