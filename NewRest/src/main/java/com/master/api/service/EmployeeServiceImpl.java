@@ -62,8 +62,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 //	}
 
 	@Override
-	public void savePost(Employee emp) {
-		this.repo.save(emp);
+	public Employee savePost(Employee emp) {
+		return this.repo.save(emp);
 
 	}
 
@@ -76,5 +76,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override	
 	public Employee getEmployeeDetails(@PathVariable Long id) {
 		return this.repo.getEmployeeDetails(id);		
+	}
+	
+	@Override
+	public Employee patchEmployee(Long id) {
+	return this.repo.findById(id).orElseThrow();
+	
 	}
 }
